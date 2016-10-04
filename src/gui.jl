@@ -1057,6 +1057,9 @@ function load_config_cb(widget::Ptr,user_data::Tuple{Gui_Handles,RHD2000})
     han, rhd = user_data
 
     filepath=open_dialog("Load Configuration",han.win)
+    if isempty(filepath)
+        return
+    end
 
     c = jldopen(filepath, "r") do file
         g=read(file,"Gain")
